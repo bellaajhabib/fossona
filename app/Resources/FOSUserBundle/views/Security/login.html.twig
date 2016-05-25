@@ -1,0 +1,30 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div style="padding-top:30px" class="panel-body" >
+        <form action="{{ path("fos_user_security_check") }}" method="post" id="loginform" class="form-horizontal" role="form">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="_password" required="required" />
+
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">Se souvenir</label>
+
+            <input type="submit" id="_submit" name="_submit" value="Se connecter" class="btn btn-success"/>
+        </form>
+    {% endif %}
+    </div>
+{% endblock fos_user_content %}

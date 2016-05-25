@@ -1,0 +1,7 @@
+services:
+  redirect.after.login:
+    class: AppBundle\Redirection\AfterLoginRedirection
+    arguments: ["@router"]
+#  redirect.after.logout:
+#    class: AppBundle\Redirection\AfterLogoutRedirection
+#    arguments: ["@router", "@security.token_storage"]
